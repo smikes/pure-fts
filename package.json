@@ -1,0 +1,21 @@
+{
+  "name": "pure-fts",
+  "version": "1.0.0",
+  "description": "pure-js full text search",
+  "main": "index.js",
+  "scripts": {
+    "test": "lab -ct 100"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.org/smikes/pure-fts"
+  },
+  "keywords": "fts, pure, full, text, search",
+  "author": "Sam Mikes <smikes@cubane.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "code": "^1.2.1",
+    "jslint": "^0.6.6",
+    "lab": "^5.1.0"
+  }
+}
