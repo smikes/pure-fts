@@ -4,7 +4,9 @@
   "description": "pure-js full text search",
   "main": "index.js",
   "scripts": {
-    "test": "lab -ct 100"
+    "lint": "jslint --terse *.js */*.js; echo",
+    "test": "lab -ct 100",
+    "cover": "lab -c -r html -o coverage/report.html"
   },
   "repository": {
     "type": "git",
