@@ -22,6 +22,20 @@ describe('thaw errors', function () {
             done();
         });
     });
+
+    it('errors on nonexistent file', function (done) {
+        var thawer = Purefts.thaw('./test/fixtures/non-existent', function (err) {
+            expect(err).to.match(/Invalid filename/);
+            done();
+        });
+    });
+
+    it('errors on invalid format', function (done) {
+        var thawer = Purefts.thaw('./test/fixtures/invalid', function (err) {
+            expect(err).to.match(/unsupported zip/);
+            done();
+        });
+    });
 });
 
 describe('valid thaw', function () {
