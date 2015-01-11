@@ -1,0 +1,5 @@
+2015-01-11  Sam Mikes  <smikes@Svarog.local>
+
+	* lib/freeze.js: implement version 1.0.0 of freeze; bump minor version
+	of package
+
