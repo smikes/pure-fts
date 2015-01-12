@@ -35,9 +35,9 @@ describe('can freeze', function () {
     it('handles failed callbacks', function (done) {
         var p = new Purefts(),
             cb = p.freeze.onBuffer('foo', function (err) {
-            expect(err).to.be.instanceof(Error);
-            done();
-        });
+                expect(err).to.be.instanceof(Error);
+                done();
+            });
 
         cb(new Error('bad zipfile'));
     });

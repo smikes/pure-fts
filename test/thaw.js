@@ -24,14 +24,14 @@ describe('thaw errors', function () {
     });
 
     it('errors on nonexistent file', function (done) {
-        var thawer = Purefts.thaw('./test/fixtures/non-existent', function (err) {
+        Purefts.thaw('./test/fixtures/non-existent', function (err) {
             expect(err).to.match(/Invalid filename/);
             done();
         });
     });
 
     it('errors on invalid format', function (done) {
-        var thawer = Purefts.thaw('./test/fixtures/invalid', function (err) {
+        Purefts.thaw('./test/fixtures/invalid', function (err) {
             expect(err).to.match(/unsupported zip/);
             done();
         });
@@ -46,9 +46,9 @@ describe('valid thaw', function () {
             expect(err).to.equal(null);
 
             expect(p.search('foo')).to.deep.equal(['foo']);
-            
+
             expect(p.find({name: 'foo'})).to.deep.equal(expected);
-            
+
             done();
         });
     });
