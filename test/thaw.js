@@ -38,8 +38,7 @@ describe('thaw errors', function () {
     });
 });
 
-/*
-describe('valid thaw - old version', function () {
+describe('valid thaw', function () {
     it('can thaw v1.0.0', function (done) {
         Purefts.thaw('test/fixtures/v1-0-0-test', function (err, p) {
             var expected = {"name": "foo", "description": "a foo thing"};
@@ -54,5 +53,3 @@ describe('valid thaw - old version', function () {
         });
     });
 });
-
-*/
