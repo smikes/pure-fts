@@ -6,6 +6,7 @@ var Code = require('code');
 var Lab = require('lab');
 var lab = Lab.script();
 var fs = require('fs');
+var rimraf = require('rimraf');
 exports.lab = lab;
 
 var describe = lab.describe;
@@ -25,7 +26,8 @@ describe('can freeze', function () {
             Purefts.thaw("./foo", function (err, q) {
                 expect(err).to.equal(null);
                 expect(q).to.be.instanceof(Purefts);
-                done();
+
+                rimraf("./foo", done);
             });
         });
     });
