@@ -16,13 +16,12 @@
   "license": "MIT",
   "devDependencies": {
     "code": "^1.2.1",
-    "jslint": "^0.6.6",
+    "jslint": "^0.7.2",
     "lab": "^5.2.0"
   },
   "dependencies": {
     "JSONStream": "^0.10.0",
     "adm-zip": "^0.4.4",
-    "jslint": "^0.7.2",
     "mkdirp": "^0.5.0",
     "rimraf": "^2.2.8"
   }
