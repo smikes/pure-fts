@@ -10,8 +10,6 @@ exports.lab = lab;
 
 var describe = lab.describe;
 var it = lab.it;
-var before = lab.before;
-var after = lab.after;
 var expect = Code.expect;
 
 describe('can freeze', function () {
@@ -32,13 +30,4 @@ describe('can freeze', function () {
         });
     });
 
-    it('handles failed callbacks', function (done) {
-        var p = new Purefts(),
-            cb = p.freeze.onBuffer('foo', function (err) {
-                expect(err).to.be.instanceof(Error);
-                done();
-            });
-
-        cb(new Error('bad zipfile'));
-    });
 });

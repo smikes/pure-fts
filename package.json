@@ -4,8 +4,7 @@
   "description": "pure-js full text search",
   "main": "index.js",
   "scripts": {
-    "lint": "jslint --terse *.js */*.js; echo",
-    "test": "lab -ct 100",
+    "test": "lab -cL -n jslint -t 100",
     "cover": "lab -c -r html -o coverage/report.html"
   },
   "repository": {
@@ -21,6 +20,10 @@
     "lab": "^5.1.0"
   },
   "dependencies": {
-    "adm-zip": "^0.4.4"
+    "JSONStream": "^0.10.0",
+    "adm-zip": "^0.4.4",
+    "jslint": "^0.7.2",
+    "mkdirp": "^0.5.0",
+    "rimraf": "^2.2.8"
   }
 }
