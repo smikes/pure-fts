@@ -17,7 +17,7 @@
   "devDependencies": {
     "code": "^1.2.1",
     "jslint": "^0.6.6",
-    "lab": "^5.1.0"
+    "lab": "^5.2.0"
   },
   "dependencies": {
     "JSONStream": "^0.10.0",
