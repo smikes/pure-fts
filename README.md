@@ -13,20 +13,24 @@ var p = new Purefts();
 p.add({ name: 'foo', description: 'a foo thing' });
 p.add({ name: 'bar', description: 'a bar thing' });
 
-p.export('index.tgz');
+p.freeze('index');
 ```
 
 ### Searching an Index
 
 ```js
 var Purefts = require('pure-fts');
-var p = new Purefts();
 
-p.import('index.tgz');
+Purefts.thaw('index', function (err, p) {
 
-p.find({ name: 'foo'}) # returns { name: 'foo', description: 'a foo thing' }
+  p.get('foo', cb);      # cb(err, data) 
 
-p.search('thing');     # returns [ 'foo', 'bar' ]
+  p.find({ name: 'foo'}, cb, done)
+                       # returns { name: 'foo', description: 'a foo thing' }
+
+  p.search('thing', cb, done);
+                       # returns [ 'foo', 'bar' ]
+})
 
 ```
 
@@ -41,4 +45,9 @@ Any of these fields are allowed to be missing.
 It would make sense to abstract this into a set of paths, if this
 module were going to be useful for general purpose fts indexing.
 
+## TODO
+
+fts doesn't work
+
+index on keyword or author does not work
 
