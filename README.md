@@ -34,6 +34,11 @@ Purefts.thaw('index', function (err, p) {
 
 ```
 
+When there are two callbacks `cb` and `done`, `cb` is called once with
+each matching record, and `done` is called after the search is
+complete.  When there is only one callback (for `get`) it is called with
+the matching record or NULL if missing.
+
 To support the needs of `npm-kludge-search`, this module assumes that
 `name` is the unique object key.  The contents of the fields `url`,
 `keywords`, `name` and `description` will be added to the full text
@@ -47,7 +52,7 @@ module were going to be useful for general purpose fts indexing.
 
 ## TODO
 
-fts doesn't work
+fts doesn't work right yet
 
 index on keyword or author does not work
 

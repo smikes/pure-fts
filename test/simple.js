@@ -39,11 +39,10 @@ describe('can add and find objects', function () {
 
         p.add(record);
 
-        result = p.find({name: 'foo'});
-
-        expect(result).to.deep.equal(record);
-
-        done();
+        p.find({name: 'foo'}, function (err, result) {
+            expect(err).to.equal(null);
+            expect(result).to.deep.equal(record);
+        }, done);
     });
 
     it('throws when adding a bad object', function (done) {
@@ -87,9 +86,11 @@ describe('can add and search objects', function () {
     });
 
     it('search finds exact match', function (done) {
-        expect(p.search('foo')).to.deep.equal(['foo']);
-
-        done();
+        p.search('foo', function (err, val) {
+            expect(val.name).to.equal('foo');
+        }, function (err) {
+            done();
+        });
     });
 
     it('is sorted after clean', function (done) {
@@ -112,20 +113,36 @@ describe('can add and search objects', function () {
     });
 
     it('search finds multiple matches', function (done) {
-        expect(p.search('thing')).to.deep.equal(['bar', 'foo']);
+        var found = 0;
 
-        done();
+        p.search('thing', function (err, val) {
+            if (val.name === 'foo') {
+                found += 1;
+            } else if (val.name === 'bar') {
+                found += 2;
+            }
+        }, function (err) {
+            expect(found).to.equal(3);
+            done();
+        });
     });
 
     it('search finds zero matches', function (done) {
-        expect(p.search('quux')).to.deep.equal([]);
-
-        done();
+        p.search('quux', function () {
+            throw new Error('should not be called!');
+        }, function () {
+            done();
+        });
     });
 
     it('search finds single non-name matches', function (done) {
-        expect(p.search('thang')).to.deep.equal(['baz']);
-
-        done();
+        var callCount = 0;
+        p.search('thang', function (err, val) {
+            expect(val.name).to.equal('baz');
+            callCount += 1;
+        }, function () {
+            expect(callCount).to.equal(1);
+            done();
+        });
     });
 });
