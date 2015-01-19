@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.org/smikes/pure-fts"
+    "url": "https://github.com/smikes/pure-fts"
   },
   "keywords": "fts, pure, full, text, search",
   "author": "Sam Mikes <smikes@cubane.com>",
