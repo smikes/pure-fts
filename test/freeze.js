@@ -78,7 +78,7 @@ describe('a large test, >1024 objects', function () {
             obj;
 
         for (i = 0; i < 2500; i += 1) {
-            obj = Object.create(item);
+            obj = JSON.parse(JSON.stringify(item));
             obj.name = 'foo' + zeroPad(i);
             p.add(obj);
         }
@@ -203,6 +203,32 @@ describe('a large test, >1024 objects', function () {
         });
     });
 
+    it('can search for term', function (done) {
+
+        Purefts.thaw("./foo", function (err, q) {
+            expect(err).to.equal(null);
+            expect(q).to.be.instanceof(Purefts);
+
+            q.search('foo0001', function (err, val) {
+                expect(err).to.equal(null);
+                expect(val.name).to.equal('foo0001');
+            }, done);
+        });
+    });
+
+    it('can search for term', function (done) {
+
+        Purefts.thaw("./foo", function (err, q) {
+            expect(err).to.equal(null);
+            expect(q).to.be.instanceof(Purefts);
+
+            q.search('fooblub', function () {
+                expect(1).to.equal(0);
+            }, done);
+        });
+    });
+
+
     it('can find last object in last bag', function (done) {
 
         Purefts.thaw("./foo", function (err, q) {
@@ -237,7 +263,7 @@ describe('an exact multiple test, 1024 objects', function () {
             obj;
 
         for (i = 0; i < 1024; i += 1) {
-            obj = Object.create(item);
+            obj = JSON.parse(JSON.stringify(item));
             obj.name = 'foo' + zeroPad(i);
             p.add(obj);
         }
@@ -279,6 +305,30 @@ describe('an exact multiple test, 1024 objects', function () {
 
                 done();
             });
+        });
+    });
+
+    it('can search bag', function (done) {
+
+        Purefts.thaw("./foo", function (err, q) {
+            expect(err).to.equal(null);
+            expect(q).to.be.instanceof(Purefts);
+
+            q.search('foo1023', function (err, val) {
+                expect(err).to.equal(null);
+                expect(val.name).to.equal('foo1023');
+
+            }, done);
+        });
+    });
+
+    it('can search for bad term', function (done) {
+
+        Purefts.thaw("./foo", function (err, q) {
+            expect(err).to.equal(null);
+            expect(q).to.be.instanceof(Purefts);
+
+            done();
         });
     });
 });
