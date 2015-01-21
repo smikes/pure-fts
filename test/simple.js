@@ -95,7 +95,7 @@ describe('can add and find objects', function () {
     it('errors when searching with a bad object', function (done) {
         var p = new Purefts();
 
-        p.find(undefined, function (err, val) {
+        p.find(undefined, function (err) {
             expect(err.message).to.match(/Cannot find object/);
         }, done);
     });
@@ -103,7 +103,7 @@ describe('can add and find objects', function () {
     it('errors when obj not found', function (done) {
         var p = new Purefts();
 
-        p.find({name: 'missing'}, function (err, val) {
+        p.find({name: 'missing'}, function (err) {
             expect(err.message).to.match(/No object with name/);
         }, done);
     });
@@ -111,7 +111,7 @@ describe('can add and find objects', function () {
     it('errors when obj not found', function (done) {
         var p = new Purefts();
 
-        p.get(undefined, function (err, val) {
+        p.get(undefined, function (err) {
             expect(err.message).to.match(/Cannot find object with invalid/);
             done();
         });
