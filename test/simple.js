@@ -92,19 +92,31 @@ describe('can add and find objects', function () {
         done();
     });
 
-    it('throws when searching with a bad object', function (done) {
+    it('errors when searching with a bad object', function (done) {
         var p = new Purefts();
 
-        expect(function () {
-            p.find();
-        }).to.throw(Error, /Cannot find object/);
-
-        expect(function () {
-            p.find({});
-        }).to.throw(Error, /Cannot find object/);
-
-        done();
+        p.find(undefined, function (err, val) {
+            expect(err.message).to.match(/Cannot find object/);
+        }, done);
     });
+
+    it('errors when obj not found', function (done) {
+        var p = new Purefts();
+
+        p.find({name: 'missing'}, function (err, val) {
+            expect(err.message).to.match(/No object with name/);
+        }, done);
+    });
+
+    it('errors when obj not found', function (done) {
+        var p = new Purefts();
+
+        p.get(undefined, function (err, val) {
+            expect(err.message).to.match(/Cannot find object with invalid/);
+            done();
+        });
+    });
+
 });
 
 describe('can add and search objects', function () {
