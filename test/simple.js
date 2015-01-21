@@ -9,8 +9,6 @@ exports.lab = lab;
 
 var describe = lab.describe;
 var it = lab.it;
-var before = lab.before;
-var after = lab.after;
 var expect = Code.expect;
 
 describe('create objects', function () {
@@ -34,8 +32,7 @@ describe('create objects', function () {
 describe('can add and find objects', function () {
     it('stores an object once added', function (done) {
         var p = new Purefts(),
-            record = {name: 'foo', description: 'a foo thing'},
-            result;
+            record = {name: 'foo', description: 'a foo thing'};
 
         p.add(record);
 
@@ -87,8 +84,10 @@ describe('can add and search objects', function () {
 
     it('search finds exact match', function (done) {
         p.search('foo', function (err, val) {
+            expect(err).to.equal(null);
             expect(val.name).to.equal('foo');
         }, function (err) {
+            expect(err).to.equal();
             done();
         });
     });
@@ -116,12 +115,14 @@ describe('can add and search objects', function () {
         var found = 0;
 
         p.search('thing', function (err, val) {
+            expect(err).to.equal(null);
             if (val.name === 'foo') {
                 found += 1;
             } else if (val.name === 'bar') {
                 found += 2;
             }
         }, function (err) {
+            expect(err).to.equal();
             expect(found).to.equal(3);
             done();
         });
@@ -138,6 +139,7 @@ describe('can add and search objects', function () {
     it('search finds single non-name matches', function (done) {
         var callCount = 0;
         p.search('thang', function (err, val) {
+            expect(err).to.equal(null);
             expect(val.name).to.equal('baz');
             callCount += 1;
         }, function () {
