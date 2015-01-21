@@ -42,6 +42,42 @@ describe('can add and find objects', function () {
         }, done);
     });
 
+    it('handles missing fts', function (done) {
+        var p = new Purefts();
+
+        p.add({name: 'bar', description: 'some description'});
+
+        p.get('bar', function (err, val) {
+            expect(err).to.equal(null);
+            expect(val.fts).to.equal('some description');
+            done();
+        });
+    });
+
+    it('handles present fts', function (done) {
+        var p = new Purefts();
+
+        p.add({name: 'bar', fts: 'some description'});
+
+        p.get('bar', function (err, val) {
+            expect(err).to.equal(null);
+            expect(val.fts).to.equal('some description');
+            done();
+        });
+    });
+
+    it('handles missing fts & desc', function (done) {
+        var p = new Purefts();
+
+        p.add({name: 'bar'});
+
+        p.get('bar', function (err, val) {
+            expect(err).to.equal(null);
+            expect(val.fts).to.equal('');
+            done();
+        });
+    });
+
     it('throws when adding a bad object', function (done) {
         var p = new Purefts();
 
