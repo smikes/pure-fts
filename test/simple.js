@@ -103,14 +103,6 @@ describe('can add and find objects', function () {
     it('errors when obj not found', function (done) {
         var p = new Purefts();
 
-        p.find({name: 'missing'}, function (err) {
-            expect(err.message).to.match(/No object with name/);
-        }, done);
-    });
-
-    it('errors when obj not found', function (done) {
-        var p = new Purefts();
-
         p.get(undefined, function (err) {
             expect(err.message).to.match(/Cannot find object with invalid/);
             done();
@@ -119,80 +111,3 @@ describe('can add and find objects', function () {
 
 });
 
-describe('can add and search objects', function () {
-    var p;
-    lab.beforeEach(function (done) {
-        p = new Purefts();
-        p.add({name: 'foo', description: 'a foo thing'});
-        p.add({name: 'bar', description: 'a bar thing'});
-        p.add({name: 'baz', description: 'a baz thang'});
-
-        done();
-    });
-
-    it('search finds exact match', function (done) {
-        p.search('foo', function (err, val) {
-            expect(err).to.equal(null);
-            expect(val.name).to.equal('foo');
-        }, function (err) {
-            expect(err).to.equal();
-            done();
-        });
-    });
-
-    it('is sorted after clean', function (done) {
-        p.clean();
-
-        expect(p.keys).to.deep.equal(['bar', 'baz', 'foo']);
-
-        done();
-    });
-
-    it('only cleans when needed', function (done) {
-        p.clean();
-        var k = p.keys;
-
-        p.clean();
-
-        expect(p.keys).to.equal(k);
-
-        done();
-    });
-
-    it('search finds multiple matches', function (done) {
-        var found = 0;
-
-        p.search('thing', function (err, val) {
-            expect(err).to.equal(null);
-            if (val.name === 'foo') {
-                found += 1;
-            } else if (val.name === 'bar') {
-                found += 2;
-            }
-        }, function (err) {
-            expect(err).to.equal();
-            expect(found).to.equal(3);
-            done();
-        });
-    });
-
-    it('search finds zero matches', function (done) {
-        p.search('quux', function () {
-            throw new Error('should not be called!');
-        }, function () {
-            done();
-        });
-    });
-
-    it('search finds single non-name matches', function (done) {
-        var callCount = 0;
-        p.search('thang', function (err, val) {
-            expect(err).to.equal(null);
-            expect(val.name).to.equal('baz');
-            callCount += 1;
-        }, function () {
-            expect(callCount).to.equal(1);
-            done();
-        });
-    });
-});

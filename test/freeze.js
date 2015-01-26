@@ -77,15 +77,11 @@ describe('a large test, >1024 objects', function () {
             i,
             obj;
 
-        for (i = 0; i < 2500; i += 1) {
+        for (i = 0; i < 5000; i += 1) {
             obj = JSON.parse(JSON.stringify(item));
             obj.name = 'foo' + zeroPad(i);
             p.add(obj);
         }
-
-        // exercise 'getKey' fn
-        expect(p.getKey('foo0010')).to.equal('foo0010');
-        expect(p.getKey('bar0010')).to.equal(undefined);
 
         p.freeze('./foo', function (err) {
             expect(err).to.equal(null);
