@@ -203,7 +203,7 @@ describe('a large test, >1024 objects', function () {
         });
     });
 
-    it('can search for term', function (done) {
+    it('can search for indexed term', function (done) {
 
         Purefts.thaw("./foo", function (err, q) {
             expect(err).to.equal(null);
@@ -216,7 +216,7 @@ describe('a large test, >1024 objects', function () {
         });
     });
 
-    it('can search for term', function (done) {
+    it('can search for missing term', function (done) {
 
         Purefts.thaw("./foo", function (err, q) {
             expect(err).to.equal(null);

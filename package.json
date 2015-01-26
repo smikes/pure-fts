@@ -1,6 +1,6 @@
 {
   "name": "pure-fts",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "description": "pure-js full text search",
   "main": "index.js",
   "scripts": {
@@ -26,6 +26,7 @@
     "binary-search": "^1.2.0",
     "hoek": "^2.11.0",
     "mkdirp": "^0.5.0",
+    "readable-stream": "^1.0.33",
     "rimraf": "^2.2.8"
   }
 }
