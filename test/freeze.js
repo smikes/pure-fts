@@ -83,6 +83,10 @@ describe('a large test, >1024 objects', function () {
             p.add(obj);
         }
 
+        // exercise 'getKey' fn
+        expect(p.getKey('foo0010')).to.equal('foo0010');
+        expect(p.getKey('bar0010')).to.equal(undefined);
+
         p.freeze('./foo', function (err) {
             expect(err).to.equal(null);
             done();
