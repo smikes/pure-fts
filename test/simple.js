@@ -36,10 +36,11 @@ describe('can add and find objects', function () {
 
         p.add(record);
 
-        p.find({name: 'foo'}, function (err, result) {
+        p.get('foo', function (err, result) {
             expect(err).to.equal(null);
             expect(result).to.deep.equal(record);
-        }, done);
+            done();
+        });
     });
 
     it('handles missing fts', function (done) {
@@ -90,14 +91,6 @@ describe('can add and find objects', function () {
         }).to.throw(Error, /Cannot add object/);
 
         done();
-    });
-
-    it('errors when searching with a bad object', function (done) {
-        var p = new Purefts();
-
-        p.find(undefined, function (err) {
-            expect(err.message).to.match(/Cannot find object/);
-        }, done);
     });
 
     it('errors when obj not found', function (done) {
