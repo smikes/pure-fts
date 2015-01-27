@@ -22,7 +22,7 @@ describe('can freeze', function () {
         p.add(item);
 
         p.freeze('./foo', function (err) {
-            expect(err).to.equal(null);
+            expect(err).to.equal();
 
             Purefts.thaw("./foo", function (err, q) {
                 expect(err).to.equal(null);
@@ -44,7 +44,7 @@ describe('can freeze', function () {
         p.add(item);
 
         p.freeze('./foo', function (err) {
-            expect(err).to.equal(null);
+            expect(err).to.equal();
 
             Purefts.thaw("./foo", function (err, q) {
                 expect(err).to.equal(null);
@@ -84,7 +84,7 @@ describe('a large test, >1024 objects', function () {
         }
 
         p.freeze('./foo', function (err) {
-            expect(err).to.equal(null);
+            expect(!err).to.equal(true);
             done();
         });
     });
@@ -269,7 +269,7 @@ describe('an exact multiple test, 1024 objects', function () {
         }
 
         p.freeze('./foo', function (err) {
-            expect(err).to.equal(null);
+            expect(err).to.equal(undefined);
             done();
         });
     });

@@ -17,6 +17,9 @@ describe('zipped pft file', function () {
     it('can be thawed', function (done) {
         Purefts.thaw('./test/fixtures/zipped.pft', function (err, q) {
             expect(err).to.equal(null);
+            if (err) {
+                return done(err);
+            }
 
             q.get('foo0001', function (err, val) {
                 expect(err).to.equal(null);
