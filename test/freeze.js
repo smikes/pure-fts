@@ -275,7 +275,8 @@ describe('an exact multiple test, 1024 objects', function () {
     });
 
     lab.after(function (done) {
-        rimraf('./foo', done);
+        //        rimraf('./foo', done);
+        done();
     });
 
     it('can find first object in only bag', function (done) {
