@@ -2,6 +2,7 @@
 
 var Purefts = require('..');
 var search = require('../lib/search');
+var thaw = require('../lib/thaw');
 
 var Code = require('code');
 var Lab = require('lab');
@@ -22,5 +23,14 @@ describe('matching objects', function () {
         expect(match({fts: ''})).to.equal(false);
 
         done();
+    });
+});
+
+describe('callback-friendly JSON.parse', function () {
+    it("doesn't throw an exception", function (done) {
+        thaw.parseJSON('invalid json', function (err) {
+            expect(err).to.be.instanceof(Error);
+            done();
+        });
     });
 });
