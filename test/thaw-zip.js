@@ -30,3 +30,14 @@ describe('zipped pft file', function () {
         });
     });
 });
+
+describe('invalid file', function () {
+    it('reports error on thaw', function (done) {
+        Purefts.thaw('./test/fixtures/invalid', function (err, q) {
+            expect(err).to.be.instanceof(Error);
+            expect(q).to.equal(undefined);
+
+            done();
+        });
+    });
+});
