@@ -243,6 +243,54 @@ describe('a large test, >1024 objects', function () {
             });
         });
     });
+
+    it('can find range across bags', function (done) {
+        Purefts.thaw('./foo', function (err, q) {
+            expect(err).to.equal(null);
+            var results = [];
+
+            q.findRange('foo2047', 'foo2048', function (err, val) {
+                expect(err).to.equal(null);
+                results.push(val);
+            }, function () {
+                expect(results).to.deep.equal(['foo2047', 'foo2048']);
+                done();
+            });
+        });
+    });
+
+    it('can find range with invalid endpoints (across bags)', function (done) {
+        Purefts.thaw('./foo', function (err, q) {
+            expect(err).to.equal(null);
+            var results = [];
+
+            q.findRange('foo2046a', 'foo2048a', function (err, val) {
+                expect(err).to.equal(null);
+                results.push(val);
+            }, function () {
+                expect(results).to.deep.equal(['foo2047', 'foo2048']);
+                done();
+            });
+        });
+    });
+
+    it('can find range with invalid endpoints (outside total range)', function (done) {
+        Purefts.thaw('./foo', function (err, q) {
+            expect(err).to.equal(null);
+            var results = [];
+
+            q.findRange('fo', 'fp', function (err, val) {
+                expect(err).to.equal(null);
+                results.push(val);
+            }, function () {
+                // should return all value
+                expect(results.length).to.equal(5000);
+                done();
+            });
+        });
+    });
+
+
 });
 
 
@@ -275,8 +323,8 @@ describe('an exact multiple test, 1024 objects', function () {
     });
 
     lab.after(function (done) {
-        //        rimraf('./foo', done);
-        done();
+        rimraf('./foo', done);
+//        done();
     });
 
     it('can find first object in only bag', function (done) {
@@ -332,4 +380,21 @@ describe('an exact multiple test, 1024 objects', function () {
             done();
         });
     });
+
+    it('can find mid range', function (done) {
+        Purefts.thaw('./test/fixtures/zipped.pft', function (err, q) {
+            expect(err).to.equal(null);
+            var results = [];
+
+            q.findRange('foo0011', 'foo0014', function (err, val) {
+                expect(err).to.equal(null);
+                results.push(val);
+            }, function () {
+                expect(results).to.deep.equal(['foo0011', 'foo0012',
+                                               'foo0013', 'foo0014']);
+                done();
+            });
+        });
+    });
+
 });
