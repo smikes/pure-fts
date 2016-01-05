@@ -4,7 +4,7 @@
   "description": "pure-js full text search",
   "main": "index.js",
   "scripts": {
-    "test": "lab -cL -n jslint -t 98",
+    "test": "lab -c -t98",
     "cover": "lab -c -r html -o coverage/report.html"
   },
   "repository": {
