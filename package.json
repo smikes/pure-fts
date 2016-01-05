@@ -1,6 +1,6 @@
 {
   "name": "pure-fts",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "description": "pure-js full text search",
   "main": "index.js",
   "scripts": {
